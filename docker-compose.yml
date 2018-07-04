@@ -2,9 +2,11 @@ version: '2'
 
 services:
   jupyterlab:
+    restart: always
     build: .
     command: "bash -c 'pip3 install -r /project/requirements.txt && jupyter lab --no-browser --ip=* --port=9000 --allow-root --notebook-dir=/project/notebooks --NotebookApp.token=\"\"'"
     volumes:
       - ./:/project
+      - ./jupyter_notebook_config.py:/root/.jupyter/jupyter_notebook_config.py
     ports:
       - 9000:9000
